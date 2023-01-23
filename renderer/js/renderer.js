@@ -8,7 +8,7 @@ const widthInput = document.querySelector('#width')
 function loadImage(e) {
   const file = e.target.files[0]
   if (!isFileImg(file)) {
-    console.log('Please select an image');
+    alertError('Please select an image');
     return
   }
   // Get original dimension
@@ -28,6 +28,32 @@ function loadImage(e) {
 function isFileImg(file) {
   const ecceptedImageTypes = ['image/gif', 'image/png', 'image/jpeg']
   return file && ecceptedImageTypes.includes(file['type'])
+}
+
+function alertError(message) {
+  Tostify.toast({
+    text: message,
+    duration: 5000,
+    close: false,
+    style: {
+      background: 'red',
+      color: 'white',
+      textAlign: 'center'
+    }
+  })
+}
+
+function alertSuccess(message) {
+  Tostify.toast({
+    text: message,
+    duration: 5000,
+    close: false,
+    style: {
+      background: 'green',
+      color: 'white',
+      textAlign: 'center'
+    }
+  })
 }
 
 img.addEventListener('change', loadImage)
